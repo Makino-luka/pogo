@@ -1,5 +1,8 @@
 # pogo
-
+```
+Based on Vue3 & Typescript, Node version v15.14.0, npm version 7.7.6
+Develop Version 0.0.1
+```
 ## Project setup
 ```
 npm install
