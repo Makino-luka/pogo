@@ -3,23 +3,13 @@
     <global-header :user="user"></global-header>
     <!-- <column-list :list ="list"></column-list>  -->
     <form>
-      <div class="mb-3">
+      <div class="mb-2">
         <label class="form-label">Email adress</label>
-        <validate-input :rules="emailRules" v-model="emailVal"></validate-input>
-        {{emailVal}}
+        <validate-input :rules="emailRules" v-model="emailVal" class="placeHolder" placeHolder="Enter email" strictMax=11></validate-input>
       </div>
-      <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1">
-      </div>
-      <div class="mb-3 form-check">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+      <div class="mb-2">
+        <label class="form-label">Password</label>
+        <validate-input :rules="passwordRules" v-model="passwordVal" class="placeHolder" placeHolder="Enter password" strictMax=20></validate-input>
       </div>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
@@ -27,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref } from 'vue'
+import { defineComponent, ref } from 'vue'
 import 'bootstrap/dist/css/bootstrap.min.css'
 // import ColumnList, { ColumnProps } from './components/ColumnList.vue'
 import GlobalHeader, { UserProps } from './components/GlobalHeader.vue'
@@ -71,16 +61,23 @@ export default defineComponent({
     ValidateInput
   },
   setup () {
-    const emailVal = ref('viking')
+    const emailVal = ref('')
+    const passwordVal = ref('')
     const emailRules: RulesProp = [
       { type: 'required', message: 'Email must not be empty!' },
       { type: 'email', message: 'email format must be correct!' }
     ]
+    const passwordRules: RulesProp = [
+      { type: 'required', message: 'Password must not be empty!' },
+      { type: 'range', message: 'Password length should be between 6 and 8, and cannot contain spaces', min: { length: 6 }, max: { length: 10 } }
+    ]
     return {
       emailRules: emailRules,
+      passwordRules: passwordRules,
       // list: testData,
       user: userInfo,
-      emailVal
+      emailVal,
+      passwordVal
     }
   }
 })
