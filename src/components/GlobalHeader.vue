@@ -1,9 +1,9 @@
 <template>
   <nav class="navbar navbar-dark bg-primary justify-content-between mb-4 px-4">
-    <a class="navbar-brand" href="#">POGO</a>
+    <router-link class="navbar-brand" to="/">POGO</router-link>
     <ul v-if="!user.isLogin" class="list-inline mb-0">
-      <li class="list-inline-item"><a href="#" class="btn btn-outline-light my-2">登陆</a></li>
-      <li class="list-inline-item"><a href="#" class="btn btn-outline-light my-2">注册</a></li>
+      <li class="list-inline-item"><router-link class="btn btn-outline-light my-2" to="/Login">登陆</router-link></li>
+      <li class="list-inline-item"><router-link class="btn btn-outline-light my-2" to="/Login">注册</router-link></li>
     </ul>
     <ul v-else class="list-inline mb-0">
       <li class="list-inline-item">
